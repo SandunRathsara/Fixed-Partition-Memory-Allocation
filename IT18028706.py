@@ -42,13 +42,18 @@ def input_prog(n):
                 print("number of pairs should be between 1 to 10")
                 continue
             break
-        # ASSIGNING NUMBER OF
+
+        # ASSIGNING 'k' AS THE FIRST ELEMENT TO THE PROGRAM LIST
         prog_list[i][0] = k
+
+        # ASSIGNING MINIMUM REQUIRED SIZE OF MEMORY AND EXECUTION TIME PAIR TO THE PROGRAM LIST
         for j in range(k):
             ms = int(input("Enter the minimum size required: "))
             t = int(input("Enter the execution time: "))
             prog_list[i].append(ms)
             prog_list[i].append(t)
+
+    # RETURNING THE PROGRAM LIST
     return prog_list
 
 main()
