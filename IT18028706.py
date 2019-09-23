@@ -1,13 +1,46 @@
+
+#the main funciton
 def main():
-    m = int(input("Enter the number of memory partitions:"))
-    n = int(input("Enter the number of programs: "))
-    mSize = []
+    #VALIDATING THE INPUT OF 'm' and 'n'
+    while(True):
+        m = int(input("Enter the number of regions:"))
+        if m < 0 or m > 10:
+            print("number of regions cannot be more than 10 or lower than 1!")
+            continue
+        n = int(input("Enter the number of programs: "))
+        if n < 0 or n > 50:
+            print("number of programs cannot be more than 50 or less than 1!")
+            continue
+        if n == 0 and m == 0:
+            print("Thank you!")
+            exit()
+        break
+
+    memory_size = []
 
     for i in range(m):
-        size = int(input("Enter the size of the memory partition "+str(i+1)+":"))
-        mSize.append(size)
+        size = int(input("Enter the size of the region "+str(i+1)+":"))
+        memory_size.append(size)
 
+    prog_list1 = input_prog(n)
+
+    print(prog_list1)
+
+
+def input_prog(n):
+    prog_list = [[0 for x in range(1)] for y in range(n)]
     for i in range(n):
-
+        while(True):
+            k = int(input("Enter the number of pairs: "))
+            if k < 1 or k > 10:
+                print("number of pairs should be between 1 to 10")
+                continue
+        prog_list[i][0] = k
+        for j in range(k):
+            ms = int(input("Enter the minimum size required: "))
+            t = int(input("Enter the execution time: "))
+            prog_list[i].append(ms)
+            prog_list[i].append(t)
+    return prog_list
 
 main()
