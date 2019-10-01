@@ -1,3 +1,6 @@
+import sys
+
+
 def main():
 
     case = 1
@@ -19,16 +22,15 @@ def main():
                 exit()
             break
 
-        # TAKING MEMORY REGIONS SIZE
-        memory_size = []
+        # CREATING MEMORY REGION LIST
+        memory_region = [[i+1] for i in range(m)]
         for i in range(m):
-            size = int(input("Enter the size of the region "+str(i+1)+":"))
-            memory_size.append(size)
+            size = int(input("Enter the size of the region " + str(i+1) + ":"))
+            memory_region[i].append(size)
 
         # TESTING
-        prog_list = input_prog(n)
-        print(prog_list)
-        print(allocate(n, m, prog_list, memory_size))
+        print(case)
+        print(memory_region)
 
 
 # TAKING INPUT FOR PROGRAM LIST
@@ -62,9 +64,13 @@ def input_prog(n):
 
 
 # FUNCTION TO SELECT THE MINIMUM SPACE INDEX IF THE K VALUE IS GREATER THAN 1
-def get_lowest_exec_time(program=[]):
-    min_time = 9223372036854775807
+def get_lowest_exec_time_index(program=[]):
+
+    # SETTING MINIMUM TIME CATCHING VARIABLE VALUE TO MAXIMUM SIZE AND INDEX NUMBER TO -1
+    min_time = sys.maxsize
     min_size_index = -1
+
+    # GETTING THE INDEX NUMBER OF THE MINIMUM MEMORY REQUIREMENT SIZE
     for i in range(1, len(program)):
         if i % 2 == 0:
             if min_time > program[i]:
