@@ -29,8 +29,7 @@ def main():
             memory_region[i].append(size)
 
         # TESTING
-        print(case)
-        print(memory_region)
+        print(sorting_program_list(n, input_prog(n)))
 
 
 # TAKING INPUT FOR PROGRAM LIST
@@ -77,6 +76,18 @@ def get_lowest_exec_time_index(program=[]):
                 min_time = program[i]
                 min_size_index = i - 1
     return min_size_index
+
+
+# CREATING THE SORTED PROGRAM LIST
+def sorting_program_list(n, programs=[]):
+    prog_list = [[i+1] for i in range(n)]
+
+    for progs in range(n):
+        min_size_index = get_lowest_exec_time_index(programs[progs])
+        prog_list[progs].append(programs[progs][min_size_index])
+        prog_list[progs].append(programs[progs][min_size_index+1])
+
+    return sorted(prog_list, key=lambda time: time[2])
 
 
 main()
