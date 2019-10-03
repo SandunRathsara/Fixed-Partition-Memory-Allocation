@@ -28,8 +28,52 @@ def main():
             size = int(input("Enter the size of the region " + str(i+1) + ":"))
             memory_region[i].append(size)
 
-        # TESTING
-        print(sorting_program_list(n, input_prog(n)))
+        # GETTING THE PROGRAM LIST
+        prog_list = input_prog(n)
+
+# ===============================MAGIC BEGINS====================================================================
+        # VARIABLES TO STORE TIME AND INSERTING ORDER
+        time_of_memory = [0] * m
+        inserting_order_details = []
+
+        # TO GIVE TURNS TO THE MEMORY REGION
+        region_number = -1
+
+        # GETTING THE SORTED PROGRAM LIST
+        sorted_prog_list = sorting_program_list(n, prog_list)
+
+        for prog in range(n):
+            while True:
+                # THIS CODE WILL COUNT THE TURN
+                # (WHEN A REGION IS GIVEN A PROGRAM,
+                # THAT REGION CANNOT TAKE ANOTHER PROGRAM UNTIL
+                # ALL THE OTHER REGIONS GET THEIR TURN AND COME BACK TO THE FIRST REGION)
+                region_number = (region_number+1) % m
+
+                if sorted_prog_list[prog][1] <= memory_region[region_number][1]:
+                    time_exec_start = time_of_memory[region_number]
+                    time_exec_end = time_of_memory[region_number] + sorted_prog_list[prog][2]
+                    inserting_order_details.append([sorted_prog_list[prog][0], region_number+1, time_exec_start, time_exec_end])
+                    time_of_memory[region_number] = time_of_memory[region_number] + time_exec_end
+
+                    break
+
+        # SORTING THE INSERTED ORDER DETAILS ACCORDING TO PROGRAM NUMBER
+        final_program_list = sorted(inserting_order_details, key=lambda program: program[0])
+
+        # CALCULATING AVERAGE TURNAROUND TIME
+        total_time = 0
+        for progs in range(len(final_program_list)):
+            total_time = total_time + final_program_list[progs][3]
+        avg_turnaround_time = total_time / n
+
+        # PRINTING THE RESULT
+        print("case" + str(case))
+        print("Average turnaround time = " + str(avg_turnaround_time))
+        for progs in range(len(final_program_list)):
+            print("Program " + str(final_program_list[progs][0]) + " runs in region " + str(final_program_list[progs][1]) + " from time " + str(final_program_list[progs][2]) + " to " + str(final_program_list[progs][3]))
+
+        case += 1
 
 
 # TAKING INPUT FOR PROGRAM LIST
@@ -78,7 +122,7 @@ def get_lowest_exec_time_index(program=[]):
     return min_size_index
 
 
-# CREATING THE SORTED PROGRAM LIST
+# SORTING THE PROGRAM LIST
 def sorting_program_list(n, programs=[]):
     prog_list = [[i+1] for i in range(n)]
 
