@@ -1,6 +1,11 @@
+# all the inputs are asked when the program is running. 
+# all the steps are commented.
+# IT18028706
+# Rathsara W. A. S
+
 import sys
 
-
+# ===========================MAIN FUNCTION==============================================================================
 def main():
 
     case = 1
@@ -31,7 +36,7 @@ def main():
         # GETTING THE PROGRAM LIST
         prog_list = input_prog(n)
 
-# ===============================MAGIC BEGINS====================================================================
+# ===========================EXECUTING THE PROGRAMS=====================================================================
         # VARIABLES TO STORE TIME AND INSERTING ORDER
         time_of_memory = [0] * m
         inserting_order_details = []
@@ -76,7 +81,7 @@ def main():
         case += 1
 
 
-# TAKING INPUT FOR PROGRAM LIST
+# ===========================TAKING INPUT FOR PROGRAM LIST==============================================================
 def input_prog(n):
     # CREATING A LIST TO STORE PROGRAM LIST
     prog_list = [[0] for y in range(n)]
@@ -86,9 +91,10 @@ def input_prog(n):
 
         # VALIDATING THE INPUT 'k'
         while True:
-            k = int(input("Enter the number of pairs: "))
+            print("program " + str(i+1))
+            k = int(input("Enter the K value: "))
             if k < 1 or k > 10:
-                print("number of pairs should be between 1 to 10")
+                print("number of K should be between 1 to 10")
                 continue
             break
 
@@ -97,6 +103,7 @@ def input_prog(n):
 
         # ASSIGNING MINIMUM REQUIRED SIZE OF MEMORY AND EXECUTION TIME PAIR TO THE PROGRAM LIST
         for j in range(k):
+            print("K = " + str(j+1))
             ms = int(input("Enter the minimum size required: "))
             t = int(input("Enter the execution time: "))
             prog_list[i].append(ms)
@@ -106,7 +113,7 @@ def input_prog(n):
     return prog_list
 
 
-# FUNCTION TO SELECT THE MINIMUM SPACE INDEX IF THE K VALUE IS GREATER THAN 1
+# ===========================FUNCTION TO SELECT THE MINIMUM SPACE INDEX FOR THE GIVEN K VALUE===========================
 def get_lowest_exec_time_index(program=[]):
 
     # SETTING MINIMUM TIME CATCHING VARIABLE VALUE TO MAXIMUM SIZE AND INDEX NUMBER TO -1
@@ -122,7 +129,7 @@ def get_lowest_exec_time_index(program=[]):
     return min_size_index
 
 
-# SORTING THE PROGRAM LIST
+# ===========================SORTING THE PROGRAM LIST===================================================================
 def sorting_program_list(n, programs=[]):
     prog_list = [[i+1] for i in range(n)]
 
@@ -134,4 +141,5 @@ def sorting_program_list(n, programs=[]):
     return sorted(prog_list, key=lambda time: time[2])
 
 
+# ===========================CALLING THE MAIN FUNCTION TO EXECUTE=======================================================
 main()
