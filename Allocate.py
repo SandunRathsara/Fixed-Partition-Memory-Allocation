@@ -1,8 +1,3 @@
-# all the inputs are asked when the program is running. 
-# all the steps are commented.
-# IT18028706
-# Rathsara W. A. S
-
 import sys
 
 # ===========================MAIN FUNCTION==============================================================================
@@ -143,3 +138,21 @@ def sorting_program_list(n, programs=[]):
 
 # ===========================CALLING THE MAIN FUNCTION TO EXECUTE=======================================================
 main()
+
+'''
+sample input
+2 4
+40 60
+1 35 4
+1 20 3
+1 40 10
+1 60 7
+
+sample output
+case1
+Average turnaround time = 7.75
+Program 1 runs in region 2 from time 0 to 4
+Program 2 runs in region 1 from time 0 to 3
+Program 3 runs in region 1 from time 3 to 13
+Program 4 runs in region 2 from time 4 to 11
+'''
